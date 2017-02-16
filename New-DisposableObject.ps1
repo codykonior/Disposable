@@ -1,7 +1,7 @@
 <#
 
 .SYNOPSIS
-The equivalent of C# using for PowerShell.
+Dispose disposable variables, the equivalent of C# using for PowerShell.
 
 .DESCRIPTION
 Objects which own unmanaged resources (such as network connections and SQL Server database connections) should have their Dispose method called in order to free up those connections and so the object's memory can later be released in a timely manner.
@@ -15,34 +15,29 @@ An object which implements System.IDisposable. This is most likely an expression
 A script block during which the above object will be used, and after which the object should be disposed of.
 
 .EXAMPLE
-Creating a disposable object, disposing it, then showing it's empty.
+New-DisposableObject ($dataSet = New-Object System.Data.DataSet) {
+}
 
-Import-Module DisposableObject
-
-New-DisposableObject ($northwind = Restore-LinqSchema Northwind | Connect-LinqSchema) { 
-	Take-Linq -LinqObject $northwind.DataContext.Orders 1 -Evaluate
-} 
-$northwind.DataContext
-# Shows empty
+Disposes of $dataSet.
 
 .EXAMPLE
-Showing the effects of variables within the script block.
-
-Import-Module Disposable
+# Try 1
 $var = "ABC"
-
-"Variable is $var."
-New-DisposableObject ($northwind = Restore-LinqSchema Northwind | Connect-LinqSchema) { 
+"Before: Var is $var"
+New-DisposableObject ($dataSet = New-Object System.Data.DataSet) { 
     $var = "BCD"
-    "Variable set to $var inside the dispose statement."
+    "During: Var is $var"
 } 
-"Variable is $var after the dispose statement."
-
-New-DisposableObject ($northwind = Restore-LinqSchema Northwind | Connect-LinqSchema) { 
+"After: Var is $var"
+# Try 2
+"Before: Var is $var"
+New-DisposableObject ($dataSet = New-Object System.Data.DataSet) { 
     $script:var = "BCD"
-    "Script variable set to $var inside the second dispose statement."
+    "During: Var is $var"
 } 
-"Script variable is $var after the second dispose statement."
+"After: Var is $var"
+
+Showing the effects of variables within the scriptblock.
 
 .NOTES
 Care must be taken not to modify variables within the scriptblock which exist in the outer scope. If you must do so, those variables must use a $script: prefix, otherwise your change may be lost as shown in the second example.
@@ -61,7 +56,7 @@ function New-DisposableObject {
     
     if ($DisposableObject) {
         try {
-            &$scriptBlock
+            &$ScriptBlock
         } finally {
             if ($null -ne $DisposableObject) {
                 if ($null -eq $DisposableObject.psbase) {

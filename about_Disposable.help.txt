@@ -1,0 +1,24 @@
+﻿TOPIC
+    about_Disposable
+
+SHORT DESCRIPTION
+	Dispose disposable variables, the equivalent of C# using for PowerShell.
+
+LONG DESCRIPTION
+	Objects which own unmanaged resources (such as network connections and SQL Server 
+	database connections) should have their Dispose method called in order to free up 
+	those connections and so the object's memory can later be released in a timely manner.
+
+	New-DisposableObject provides a simple way of managing this using a simple syntax 
+	usually consisting of the instantiation of the object followed by a scriptblock in 
+	which it will be used, before being disposed of behind the scenes.
+
+REQUIREMENTS
+	
+EXAMPLE #1
+    New-DisposableObject ($dataSet = New-Object System.Data.DataSet) {
+    }
+
+LINKS
+	https://github.com/codykonior/Disposable
+
