@@ -72,8 +72,8 @@ function New-DisposableObject {
         try {
             &$scriptBlock
         } finally {
-            if ($DisposableObject -ne $null) {
-                if ($DisposableObject.psbase -eq $null) {
+            if ($null -ne $DisposableObject) {
+                if ($null -eq $DisposableObject.psbase) {
                     $DisposableObject.Dispose()
                 } else {
                     $DisposableObject.psbase.Dispose()

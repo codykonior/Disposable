@@ -9,10 +9,13 @@
 @{
 
 # Script module or binary module file associated with this manifest.
-ModuleToProcess = 'Disposable.psm1'
+RootModule = 'Disposable.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.0'
+ModuleVersion = '1.0.0.1'
+
+# Supported PSEditions
+# CompatiblePSEditions = @()
 
 # ID used to uniquely identify this module
 GUID = 'b3e7f215-e869-4eca-8b3f-873661232ece'
@@ -21,7 +24,7 @@ GUID = 'b3e7f215-e869-4eca-8b3f-873661232ece'
 Author = 'Cody Konior'
 
 # Company or vendor of this module
-CompanyName = 'Cody Konior'
+CompanyName = ''
 
 # Copyright statement for this module
 Copyright = '(c) 2015 Cody Konior. All rights reserved.'
@@ -65,17 +68,22 @@ Copyright = '(c) 2015 Cody Konior. All rights reserved.'
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
 # NestedModules = @()
 
-# Functions to export from this module
-FunctionsToExport = '*'
+# Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
+FunctionsToExport = @(
+    "New-DisposableObject"
+    )
 
-# Cmdlets to export from this module
-CmdletsToExport = '*'
+# Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
+CmdletsToExport = @()
 
 # Variables to export from this module
 VariablesToExport = '*'
 
-# Aliases to export from this module
-AliasesToExport = '*'
+# Aliases to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no aliases to export.
+AliasesToExport = @()
+
+# DSC resources to export from this module
+# DscResourcesToExport = @()
 
 # List of all modules packaged with this module
 # ModuleList = @()
@@ -83,8 +91,29 @@ AliasesToExport = '*'
 # List of all files packaged with this module
 # FileList = @()
 
-# Private data to pass to the module specified in RootModule/ModuleToProcess
-# PrivateData = ''
+# Private data to pass to the module specified in RootModule/ModuleToProcess. This may also contain a PSData hashtable with additional module metadata used by PowerShell.
+PrivateData = @{
+
+    PSData = @{
+
+        # Tags applied to this module. These help with module discovery in online galleries.
+        # Tags = @()
+
+        # A URL to the license for this module.
+        # LicenseUri = ''
+
+        # A URL to the main website for this project.
+        # ProjectUri = ''
+
+        # A URL to an icon representing this module.
+        # IconUri = ''
+
+        # ReleaseNotes of this module
+        # ReleaseNotes = ''
+
+    } # End of PSData hashtable
+
+} # End of PrivateData hashtable
 
 # HelpInfo URI of this module
 # HelpInfoURI = ''
