@@ -24,17 +24,17 @@ Disposes of $dataSet.
 # Try 1
 $var = "ABC"
 "Before: Var is $var"
-New-DisposableObject ($dataSet = New-Object System.Data.DataSet) { 
+New-DisposableObject ($dataSet = New-Object System.Data.DataSet) {
     $var = "BCD"
     "During: Var is $var"
-} 
+}
 "After: Var is $var"
 # Try 2
 "Before: Var is $var"
-New-DisposableObject ($dataSet = New-Object System.Data.DataSet) { 
+New-DisposableObject ($dataSet = New-Object System.Data.DataSet) {
     $script:var = "BCD"
     "During: Var is $var"
-} 
+}
 "After: Var is $var"
 
 Showing the effects of variables within the scriptblock.
@@ -48,12 +48,12 @@ This function is based largely on work done by Adam Weigert @ http://weblogs.asp
 
 function New-DisposableObject {
     param (
-        [System.IDisposable] 
+        [System.IDisposable]
         $DisposableObject,
-        [ScriptBlock] 
+        [ScriptBlock]
         $ScriptBlock
     )
-    
+
     if ($DisposableObject) {
         try {
             &$ScriptBlock
