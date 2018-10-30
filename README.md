@@ -4,7 +4,7 @@ There is no logo yet.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/9vavuweyhs0aa740?svg=true)](https://ci.appveyor.com/project/codykonior/disposable)
 
-There is no CHANGELOG yet.
+Read the [CHANGELOG][3]
 
 ## Description
 Objects which own unmanaged resources (such as network connections and SQL Server
@@ -42,6 +42,6 @@ New-DisposableObject ($dataSet = New-Object System.Data.DataSet) {
 }
 ```
 
-[1]: Images/cim.ai.svg
-[2]: Images/cim.gif
+[1]: Images/disposable.ai.svg
+[2]: Images/disposable.gif
 [3]: CHANGELOG.md
